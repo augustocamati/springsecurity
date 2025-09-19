@@ -7,6 +7,7 @@ import com.example.springsecurity.entities.Role;
 import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
+    Role findByName(String name);
     // Additional query methods can be defined here if needed
   
 }
