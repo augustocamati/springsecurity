@@ -1,0 +1,12 @@
+
+
+--- INSERT ROLES
+INSERT IGNORE INTO tb_roles(role_id, NAME) VALUES('81e47e1c-a566-11ec-b909-0242ac120002', 'BASIC');
+INSERT IGNORE INTO tb_roles(role_id, NAME) VALUES('b60974bc-7fe1-44c9-a874-cd989b961ec9', 'ADMIN');
+
+
+
+
+
+
+
