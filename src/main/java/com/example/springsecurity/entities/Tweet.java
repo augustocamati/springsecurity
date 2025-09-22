@@ -12,6 +12,8 @@ import jakarta.persistence.Table;
 
 import java.time.Instant;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "tb_tweets")
 public class Tweet {
@@ -24,17 +26,18 @@ public class Tweet {
 
   @ManyToOne
   @JoinColumn(name = "user_id")
-  private User author;
+  private User user;
 
+@CreationTimestamp
   private Instant createdAt;
 
   public Tweet() {
   }
 
-  public Tweet(Long id, String content, User author, Instant createdAt) {
+  public Tweet(Long id, String content, User user, Instant createdAt) {
     this.id = id;
     this.content = content;
-    this.author = author;
+    this.user = user;
     this.createdAt = createdAt;
   }
 
@@ -63,11 +66,11 @@ public class Tweet {
     this.content = content;
   }
 
-  public User getAuthor() {
-    return author;
+  public User getUser() {
+    return user;
   }
 
-  public void setAuthor(User author) {
-    this.author = author;
+  public void setUser(User user) {
+    this.user = user;
   }
 }
