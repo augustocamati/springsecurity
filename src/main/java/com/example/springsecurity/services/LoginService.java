@@ -1,6 +1,7 @@
 package com.example.springsecurity.services;
 
 import java.time.Instant;
+import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -34,12 +35,23 @@ public class LoginService {
     }
 
     System.out.println("User authenticated: " + user.get().getUsername());
-    var expiresIn = 3600L;
+    var expiresIn = 432000L;
     var now = Instant.now();
+
+    var scopes = user.get()
+        .getRoles()
+        .stream()
+        .map(role -> "ROLE_" + role.getName())
+        .collect(Collectors.joining(" "));
+
+    System.out.println("User roles: " + scopes);
+
     var claims = JwtClaimsSet.builder()
         .issuer("Augusto")
+        .claim("scope", scopes)
         .subject(user.get().getUserId().toString())
         .issuedAt(now)
+        
         .expiresAt(now.plusSeconds(expiresIn))
         .build();
 
