@@ -1,5 +1,5 @@
 package com.example.springsecurity.dto;
 
-public record LoginResponseDto( String accessToken, Long expiresIn  ) {
-  
+public record LoginResponseDto(String accessToken, Integer expiresIn) {
+
 }
