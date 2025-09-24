@@ -20,7 +20,7 @@ public class ListUserController {
   }
 
   @GetMapping("/users")
-  @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+  @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
   public ResponseEntity<List<User>> list() {
     List<User> users = listUserService.execute();
     System.out.println("List of users: " + users);
