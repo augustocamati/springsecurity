@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.springsecurity.entities.Tweet;
+import com.example.springsecurity.dto.ResponseListTweetsDto;
 import com.example.springsecurity.repositories.TweetRepository;
 
 @Service
@@ -16,7 +16,11 @@ public class ListTweetService {
 
   }
 
-  public List<Tweet> execute() {
-    return tweetRepository.findAll();
+  public List<ResponseListTweetsDto> execute() {
+    List<ResponseListTweetsDto> tweets = tweetRepository.findAll().stream()
+        .map(tweet -> new ResponseListTweetsDto(tweet.getId(), tweet.getContent(), tweet.getCreatedAt(),
+            tweet.getUser().getUsername()))
+        .toList();
+    return tweets;
   }
 }
