@@ -35,7 +35,7 @@ public class LoginService {
     }
 
     System.out.println("User authenticated: " + user.get().getUsername());
-    var expiresIn = 432000L;
+    var expiresIn = 60 * 60 * 24 * 5;// 60*60*24*5 = 5 days
     var now = Instant.now();
 
     var scopes = user.get()
